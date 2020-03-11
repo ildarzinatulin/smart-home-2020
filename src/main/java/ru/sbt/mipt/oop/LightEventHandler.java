@@ -13,47 +13,31 @@ public class LightEventHandler implements EventHandler {
 
     @Override
     public void handle(SensorEvent event) {
-        if (isaLightEvent(event)) {
-            Light light = getLightById(event.getObjectId());
-            if (light != null) {
-                updateLightState(event, light);
-            }
-        }
+        if (!isaLightEvent(event)) return;
+
+        smartHome.execute(smartHomeObject -> {
+            if (!(smartHomeObject instanceof Light)) return;
+
+            Light light = (Light) smartHomeObject;
+            if (!light.getId().equals(event.getObjectId())) return;
+            updateLightState(event, light);
+        });
     }
 
     private void updateLightState(SensorEvent event, Light light) {
-        Room room = findWhereLightById(light.getId());
+        String lightEvent;
         if (event.getType() == LIGHT_ON) {
             light.setOn(true);
-            System.out.println("Light " + light.getId() + " in room " + room.getName() + " was turned on.");
+            lightEvent = " was turned on.";
         } else {
             light.setOn(false);
-            System.out.println("Light " + light.getId() + " in room " + room.getName() + " was turned off.");
+            lightEvent = " was turned off.";
         }
-    }
-
-    private Light getLightById(String eventId) {
-        Room room = findWhereLightById(eventId);
-        for (Light light : room.getLights()) {
-            if (light.getId().equals(eventId)) {
-                return light;
-            }
-        }
-        return null;
+        System.out.println("Light " + light.getId() + " in room " + lightEvent);
     }
 
     private boolean isaLightEvent(SensorEvent event) {
         return event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF;
     }
 
-    private Room findWhereLightById(String LightId) {
-        for (Room room : smartHome.getRooms()) {
-            for (Light light : room.getLights()) {
-                if (light.getId().equals(LightId)) {
-                    return room;
-                }
-            }
-        }
-        return null;
-    }
 }

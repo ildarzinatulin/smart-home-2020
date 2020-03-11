@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Door {
+public class Door implements Actionable {
     private final String id;
     private boolean isOpen;
 
@@ -9,11 +9,20 @@ public class Door {
         this.id = id;
     }
 
-    public String getId() {
+    String getId() {
         return id;
     }
 
-    public void setOpen(boolean open) {
+    boolean getState() {
+        return isOpen;
+    }
+
+    void setOpen(boolean open) {
         isOpen = open;
+    }
+
+    @Override
+    public void execute(Action action) {
+        action.accept(this);
     }
 }

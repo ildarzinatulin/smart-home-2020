@@ -60,15 +60,15 @@
     {
       "lights": [
         {
-          "isOn": false,
+          "isOn": true,
           "id": "7"
         },
         {
-          "isOn": false,
+          "isOn": true,
           "id": "8"
         },
         {
-          "isOn": false,
+          "isOn": true,
           "id": "9"
         }
       ],

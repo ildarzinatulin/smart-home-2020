@@ -13,58 +13,27 @@ public class DoorEventHandler implements EventHandler {
 
     @Override
     public void handle(SensorEvent event) {
-        if (isaDoorEvent(event)) {
-            Door door = getDoorById(event.getObjectId());
-            if (door != null) {
-                updateDoorState(event, door);
+        if (!isaDoorEvent(event)) return;
+        smartHome.execute(smartHomeObject -> {
+            if (!(smartHomeObject instanceof Door)) {
+                return;
             }
-        }
-    }
-
-    private Room findWhereDoorById(String DoorId) {
-        for (Room room : smartHome.getRooms()) {
-            for (Door door : room.getDoors()) {
-                if (door.getId().equals(DoorId)) {
-                    return room;
-                }
-            }
-        }
-        return null;
+            Door door = (Door) smartHomeObject;
+            if (!door.getId().equals(event.getObjectId())) return;
+            updateDoorState(event, door);
+        });
     }
 
     private void updateDoorState(SensorEvent event, Door door) {
-        Room room = findWhereDoorById(door.getId());
+        String doorEvent;
         if (event.getType() == DOOR_OPEN) {
             door.setOpen(true);
-            System.out.println("Door " + door.getId() + " in room " + room.getName() + " was opened.");
+            doorEvent = " was opened.";
         } else {
             door.setOpen(false);
-            System.out.println("Door " + door.getId() + " in room " + room.getName() + " was closed.");
-            if (room.getName().equals("hall")) {
-                ternOffAllLight();
-            }
+            doorEvent = " was closed.";
         }
-    }
-
-    private void ternOffAllLight() {
-        for (Room homeRoom : smartHome.getRooms()) {
-            for (Light light : homeRoom.getLights()) {
-                light.setOn(false);
-                SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
-                CommandSender.sendCommand(command);
-            }
-        }
-    }
-
-    private Door getDoorById(String objectId) {
-        Room room = findWhereDoorById(objectId);
-        for (Door door : room.getDoors()) {
-            if (door.getId().equals(objectId)) {
-                return door;
-            }
-        }
-
-        return null;
+        System.out.println("Door " + door.getId() + doorEvent);
     }
 
     private boolean isaDoorEvent(SensorEvent event) {
