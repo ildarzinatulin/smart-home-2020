@@ -13,6 +13,6 @@ class DoorTest {
             Door thisDoor = (Door) object;
             thisDoor.setOpen(true);
         });
-        assertTrue(door.getState());
+        assertTrue(door.isOpen());
     }
 }

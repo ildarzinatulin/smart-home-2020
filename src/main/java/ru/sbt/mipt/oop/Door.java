@@ -13,7 +13,7 @@ public class Door implements Actionable {
         return id;
     }
 
-    boolean getState() {
+    boolean isOpen() {
         return isOpen;
     }
 
