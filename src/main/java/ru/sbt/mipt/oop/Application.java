@@ -8,16 +8,14 @@ public class Application {
 
     public static void main(String... args) throws IOException {
         SmartHome smartHome = new SmartHomeJsonReader().readSmartHome("smart-home-1.js");
-        SensorEvent event = new RandomSensorEventCreator().getNextSensorEvent();
+
         List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome), new LightEventHandler(smartHome),
-                new HallDoorEventHandler(smartHome));
-        while (event != null) {
-            System.out.println("Got event: " + event);
-            for (EventHandler handler: handlers) {
-                handler.handle(event);
-            }
-            event = new RandomSensorEventCreator().getNextSensorEvent();
-        }
+                new HallDoorEventHandler(smartHome, new CommandSender()));
+
+        RandomSensorEventCreator randomSensorEventCreator = new RandomSensorEventCreator();
+
+        RandomEventHandler randomEventHandler = new RandomEventHandler(handlers, randomSensorEventCreator);
+        randomEventHandler.run();
     }
 
 }

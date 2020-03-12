@@ -5,9 +5,11 @@ import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
 public class HallDoorEventHandler implements EventHandler {
 
     private SmartHome smartHome;
+    private CommandSender commandSender;
 
-    HallDoorEventHandler(SmartHome smartHome) {
+    HallDoorEventHandler(SmartHome smartHome, CommandSender commandSender) {
         this.smartHome = smartHome;
+        this.commandSender = commandSender;
     }
 
     private void ternOffAllLight() {
@@ -18,7 +20,7 @@ public class HallDoorEventHandler implements EventHandler {
             light.setOn(false);
 
             SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
-            CommandSender.sendCommand(command);
+            commandSender.sendCommand(command);
         });
     }
 
@@ -42,4 +44,5 @@ public class HallDoorEventHandler implements EventHandler {
             });
         });
     }
+
 }
