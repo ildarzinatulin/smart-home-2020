@@ -12,7 +12,7 @@ public class HallDoorEventHandler implements EventHandler {
         this.commandSender = commandSender;
     }
 
-    private void ternOffAllLight() {
+    private void turnOffAllLight() {
         smartHome.execute(smartHomeObject -> {
             if (!(smartHomeObject instanceof Light)) return;
 
@@ -39,7 +39,7 @@ public class HallDoorEventHandler implements EventHandler {
 
                 Door door = (Door) nextSmartHomeObject;
                 if (door.getId().equals(event.getObjectId())) {
-                    ternOffAllLight();
+                    turnOffAllLight();
                 }
             });
         });

@@ -2,12 +2,12 @@ package ru.sbt.mipt.oop;
 
 import java.util.List;
 
-public class RandomEventHandler {
+class LoopOfHandlesSensorEvents {
 
     private List<EventHandler> handlers;
-    private RandomSensorEventCreator eventCreator;
+    private SensorEventCreator eventCreator;
 
-    public RandomEventHandler(List<EventHandler> handlers, RandomSensorEventCreator eventCreator) {
+    LoopOfHandlesSensorEvents(List<EventHandler> handlers, SensorEventCreator eventCreator) {
         this.handlers = handlers;
         this.eventCreator = eventCreator;
     }

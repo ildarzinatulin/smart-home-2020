@@ -13,14 +13,6 @@ public class Room implements Actionable{
         this.name = name;
     }
 
-    Collection<Light> getLights() {
-        return lights;
-    }
-
-    Collection<Door> getDoors() {
-        return doors;
-    }
-
     String getName() {
         return name;
     }
