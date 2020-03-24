@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop;
 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,5 +17,6 @@ public class Application {
         LoopOfHandlesSensorEvents loopOfHandlesSensorEvents = new LoopOfHandlesSensorEvents(handlers, randomSensorEventCreator);
         loopOfHandlesSensorEvents.run();
     }
+
 
 }
