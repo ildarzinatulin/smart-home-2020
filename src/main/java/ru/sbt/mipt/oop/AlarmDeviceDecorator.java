@@ -1,12 +1,14 @@
 package ru.sbt.mipt.oop;
 
+import java.util.Collection;
+
 public class AlarmDeviceDecorator implements EventHandler {
 
-    private EventHandler eventHandler;
+    private Collection<EventHandler> eventHandlers;
     private SmartAlarmDevice alarmDevice;
 
-    public AlarmDeviceDecorator(EventHandler eventHandler, SmartAlarmDevice alarmDevice) {
-        this.eventHandler = eventHandler;
+    AlarmDeviceDecorator(Collection<EventHandler> eventHandlers, SmartAlarmDevice alarmDevice) {
+        this.eventHandlers = eventHandlers;
         this.alarmDevice = alarmDevice;
     }
 
@@ -14,7 +16,6 @@ public class AlarmDeviceDecorator implements EventHandler {
     public void handle(SensorEvent event) {
         if (alarmDevice.isActivated()) {
             alarmDevice.setToAlarmMode();
-            System.out.println("Sending sms");
         }
 
         if (alarmDevice.isAlarm()) {
@@ -22,6 +23,8 @@ public class AlarmDeviceDecorator implements EventHandler {
             return;
         }
 
-        eventHandler.handle(event);
+        for (EventHandler eventHandler : eventHandlers) {
+            eventHandler.handle(event);
+        }
     }
 }

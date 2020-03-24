@@ -1,26 +1,23 @@
 package ru.sbt.mipt.oop;
 
-public class SmartAlarmDevice implements AlarmDevice{
+class SmartAlarmDevice {
 
     private AlarmDevice state = new AlarmDeviceDeactivatedState(this);
     private String code;
 
-    public SmartAlarmDevice(String code) {
+    SmartAlarmDevice(String code) {
         this.code = code;
     }
 
-    @Override
-    public void activate(String code) {
+    void activate(String code) {
         state.activate(code);
     }
 
-    @Override
-    public void deactivate(String code) {
+    void deactivate(String code) {
         state.deactivate(code);
     }
 
-    @Override
-    public void setToAlarmMode() {
+    void setToAlarmMode() {
         state.setToAlarmMode();
     }
 
