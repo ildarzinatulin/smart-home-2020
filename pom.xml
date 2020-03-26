@@ -12,6 +12,8 @@
 
     <properties>
         <sl4j-version>1.5.8</sl4j-version>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
     </properties>
 
     <build>
