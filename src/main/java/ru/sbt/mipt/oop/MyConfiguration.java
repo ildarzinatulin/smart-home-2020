@@ -25,6 +25,14 @@ import java.util.Map;
 public class MyConfiguration {
 
     @Bean
+    public SmartHome smartHome() {
+        SmartHome smartHome = new SmartHomeJsonReader().readSmartHome("smart-home-1.js");
+        SmartAlarmDevice smartAlarmDevice = new SmartAlarmDevice("1234");
+        smartHome.addAlarmDevice(smartAlarmDevice);
+        return smartHome;
+    }
+
+    @Bean
     public Command turnOffAllLightCommand(SmartHome smartHome) {
         return new TurnOffAllLightCommand(smartHome);
     }
@@ -50,7 +58,7 @@ public class MyConfiguration {
     }
 
     @Bean
-    public Command activateAlarmModeCommand(SmartHome smartHome, String code) {
+    public Command activateAlarmModeCommand(SmartHome smartHome) {
         return new ActivateAlarmModeCommand(smartHome);
     }
 
@@ -63,14 +71,13 @@ public class MyConfiguration {
     public RemoteControl remoteControl(Command turnOffAllLightCommand, Command closeHallDoorCommand,
                                        Command turnOnHallLightCommand, Command activateAlarmDeviceCommand,
                                        Command activateAlarmModeCommand, Command turnOnAllLightCommand) {
-        RemoteControl remoteControl = new RemoteControl(Map.of(
+        return new RemoteControl(Map.of(
                 "1", turnOffAllLightCommand,
                 "2", closeHallDoorCommand,
                 "3", turnOnHallLightCommand,
                 "4", activateAlarmDeviceCommand,
                 "A", activateAlarmModeCommand,
                 "B", turnOnAllLightCommand));
-        return remoteControl;
     }
 
     @Bean
@@ -83,14 +90,6 @@ public class MyConfiguration {
         RemoteControlRegistry remoteControlRegistry = new RemoteControlRegistry();
         remoteControlRegistry.registerRemoteControl(remoteControl, rcId);
         return remoteControlRegistry;
-    }
-
-    @Bean
-    public SmartHome smartHome() {
-        SmartHome smartHome = new SmartHomeJsonReader().readSmartHome("smart-home-1.js");
-        SmartAlarmDevice smartAlarmDevice = new SmartAlarmDevice("1234");
-        smartHome.addAlarmDevice(smartAlarmDevice);
-        return smartHome;
     }
 
     @Bean

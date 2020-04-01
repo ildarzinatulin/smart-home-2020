@@ -4,7 +4,7 @@ public class AlarmDeviceActivatedState implements AlarmDevice {
 
     private SmartAlarmDevice alarmDevice;
 
-    AlarmDeviceActivatedState(SmartAlarmDevice alarmDevice) {
+    public AlarmDeviceActivatedState(SmartAlarmDevice alarmDevice) {
         this.alarmDevice = alarmDevice;
     }
 
