@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Configuration
 public class MyConfiguration {
@@ -19,16 +20,42 @@ public class MyConfiguration {
     }
 
     @Bean
-    public EventHandler handler(SmartHome smartHome) {
-        List<EventHandler> handlers = Arrays.asList(new DoorEventHandler(smartHome), new LightEventHandler(smartHome),
-                new HallDoorEventHandler(smartHome, new CommandSenderOutInConsole()));
-        return new AlarmDeviceDecorator(handlers, smartHome.getAlarmDevice());
+    public EventHandler doorEventHandler(SmartHome smartHome) {
+        return new DoorEventHandler(smartHome);
     }
 
     @Bean
-    public SensorEventsManager sensorEventsManager(EventHandler handler, SmartHome smartHome) {
+    public EventHandler lightEventHandler(SmartHome smartHome) {
+        return new LightEventHandler(smartHome);
+    }
+
+    @Bean
+    public EventHandler hallDoorEventHandler(SmartHome smartHome) {
+        return new HallDoorEventHandler(smartHome, new CommandSenderOutInConsole());
+    }
+
+    @Bean
+    public List<EventHandler> handlers(EventHandler hallDoorEventHandler, EventHandler lightEventHandler,
+                                EventHandler doorEventHandler) {
+        return Arrays.asList(hallDoorEventHandler, lightEventHandler, doorEventHandler);
+    }
+
+    @Bean
+    public Map<String, SensorEventType> typeMap () {
+        return Map.of(
+                "LightIsOn", SensorEventType.LIGHT_ON,
+                "LightIsOff", SensorEventType.LIGHT_OFF,
+                "DoorIsOpen", SensorEventType.DOOR_OPEN,
+                "DoorIsClosed", SensorEventType.DOOR_CLOSED
+        );
+    }
+
+    @Bean
+    public SensorEventsManager sensorEventsManager(List<EventHandler> handlers, SmartHome smartHome,
+                                                   Map<String, SensorEventType> typeMap) {
         SensorEventsManager sensorEventsManager = new SensorEventsManager();
-        sensorEventsManager.registerEventHandler(new EventHandlerAdapter(handler));
+        sensorEventsManager.registerEventHandler(new EventHandlerAdapter(new AlarmDeviceDecorator(handlers,
+                smartHome.getAlarmDevice()), typeMap));
         return sensorEventsManager;
     }
 
