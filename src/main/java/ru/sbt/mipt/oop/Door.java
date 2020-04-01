@@ -9,15 +9,15 @@ public class Door implements Actionable {
         this.id = id;
     }
 
-    String getId() {
+    public String getId() {
         return id;
     }
 
-    boolean isOpen() {
+    public boolean isOpen() {
         return isOpen;
     }
 
-    void setOpen(boolean open) {
+    public void setOpen(boolean open) {
         isOpen = open;
     }
 

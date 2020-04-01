@@ -13,11 +13,11 @@ public class Light implements Actionable{
         return isOn;
     }
 
-    String getId() {
+    public String getId() {
         return id;
     }
 
-    void setOn(boolean on) {
+    public void setOn(boolean on) {
         isOn = on;
     }
 
