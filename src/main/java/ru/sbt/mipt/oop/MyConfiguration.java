@@ -3,6 +3,7 @@ package ru.sbt.mipt.oop;
 import com.coolcompany.smarthome.events.SensorEventsManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import rc.RemoteControlRegistry;
 import ru.sbt.mipt.oop.adapters.EventHandlerAdapter;
 import ru.sbt.mipt.oop.alarmdevice.SmartAlarmDevice;
 import ru.sbt.mipt.oop.command.CommandSenderOutInConsole;
@@ -13,6 +14,7 @@ import ru.sbt.mipt.oop.eventhandlers.HallDoorEventHandler;
 import ru.sbt.mipt.oop.eventhandlers.LightEventHandler;
 import ru.sbt.mipt.oop.objects.SmartHome;
 import ru.sbt.mipt.oop.readers.SmartHomeJsonReader;
+import ru.sbt.mipt.oop.remotecontrol.*;
 import ru.sbt.mipt.oop.sensorevent.SensorEventType;
 
 import java.util.Arrays;
@@ -21,6 +23,67 @@ import java.util.Map;
 
 @Configuration
 public class MyConfiguration {
+
+    @Bean
+    public Command turnOffAllLightCommand(SmartHome smartHome) {
+        return new TurnOffAllLightCommand(smartHome);
+    }
+
+    @Bean
+    public Command closeHallDoorCommand(SmartHome smartHome) {
+        return new CloseHallDoorCommand(smartHome);
+    }
+
+    @Bean
+    public Command turnOnHallLightCommand(SmartHome smartHome) {
+        return new TurnOnHallLightCommand(smartHome);
+    }
+
+    @Bean
+    public Command activateAlarmDeviceCommand(SmartHome smartHome, String code) {
+        return new ActivateAlarmDeviceCommand(smartHome,code);
+    }
+
+    @Bean
+    public String code() {
+        return "1234";
+    }
+
+    @Bean
+    public Command activateAlarmModeCommand(SmartHome smartHome, String code) {
+        return new ActivateAlarmModeCommand(smartHome);
+    }
+
+    @Bean
+    public Command turnOnAllLightCommand(SmartHome smartHome) {
+        return new TurnOnAllLightCommand(smartHome);
+    }
+
+    @Bean
+    public RemoteControl remoteControl(Command turnOffAllLightCommand, Command closeHallDoorCommand,
+                                       Command turnOnHallLightCommand, Command activateAlarmDeviceCommand,
+                                       Command activateAlarmModeCommand, Command turnOnAllLightCommand) {
+        RemoteControl remoteControl = new RemoteControl(Map.of(
+                "1", turnOffAllLightCommand,
+                "2", closeHallDoorCommand,
+                "3", turnOnHallLightCommand,
+                "4", activateAlarmDeviceCommand,
+                "A", activateAlarmModeCommand,
+                "B", turnOnAllLightCommand));
+        return remoteControl;
+    }
+
+    @Bean
+    public String rcId() {
+        return "1";
+    }
+
+    @Bean
+    public RemoteControlRegistry remoteControlRegistry(RemoteControl remoteControl, String rcId) {
+        RemoteControlRegistry remoteControlRegistry = new RemoteControlRegistry();
+        remoteControlRegistry.registerRemoteControl(remoteControl, rcId);
+        return remoteControlRegistry;
+    }
 
     @Bean
     public SmartHome smartHome() {

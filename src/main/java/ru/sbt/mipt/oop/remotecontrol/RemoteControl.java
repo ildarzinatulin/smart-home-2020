@@ -6,12 +6,11 @@ import java.util.Map;
 public class RemoteControl implements rc.RemoteControl {
     private Map<String, Command> buttonsCommandMap = new HashMap<>();
 
-    public void setButtonCommand(String button, Command command) {
-        if (buttonsCommandMap.containsKey(button)) {
-            buttonsCommandMap.replace(button, command);
-        } else {
-            buttonsCommandMap.put(button, command);
-        }
+    public RemoteControl(){
+    }
+
+    public RemoteControl(Map<String, Command> buttonsCommandMap) {
+        this.buttonsCommandMap = buttonsCommandMap;
     }
 
     @Override
@@ -20,9 +19,4 @@ public class RemoteControl implements rc.RemoteControl {
             buttonsCommandMap.get(buttonCode).execute();
         }
     }
-
-    public Command getButtonCommand(String buttonCode) {
-        return buttonsCommandMap.get(buttonCode);
-    }
-
 }
