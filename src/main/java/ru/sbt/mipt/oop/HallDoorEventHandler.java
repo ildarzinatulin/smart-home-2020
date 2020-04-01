@@ -1,5 +1,8 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.*;
+import ru.sbt.mipt.oop.EventHandler;
+
 import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
 
 public class HallDoorEventHandler implements EventHandler {
@@ -7,7 +10,7 @@ public class HallDoorEventHandler implements EventHandler {
     private SmartHome smartHome;
     private CommandSender commandSender;
 
-    HallDoorEventHandler(SmartHome smartHome, CommandSender commandSender) {
+    public HallDoorEventHandler(SmartHome smartHome, CommandSender commandSender) {
         this.smartHome = smartHome;
         this.commandSender = commandSender;
     }

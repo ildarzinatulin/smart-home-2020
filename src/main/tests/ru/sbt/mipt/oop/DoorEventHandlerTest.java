@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop;
 
 import org.junit.jupiter.api.Test;
+
 import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
 import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
 

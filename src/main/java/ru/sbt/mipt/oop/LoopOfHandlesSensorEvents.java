@@ -12,7 +12,7 @@ class LoopOfHandlesSensorEvents {
         this.eventCreator = eventCreator;
     }
 
-    public void run() {
+    void run() {
         SensorEvent event = eventCreator.getNextSensorEvent();
         while (event != null) {
             System.out.println("Got event: " + event);

@@ -13,7 +13,7 @@ public class Room implements Actionable{
         this.name = name;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
