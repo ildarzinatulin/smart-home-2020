@@ -2,6 +2,8 @@ package ru.sbt.mipt.oop;
 
 import java.util.Collection;
 
+import static ru.sbt.mipt.oop.SensorEventType.ALARM_DEACTIVATE;
+
 public class AlarmDeviceDecorator implements EventHandler {
 
     private Collection<EventHandler> eventHandlers;
@@ -14,11 +16,11 @@ public class AlarmDeviceDecorator implements EventHandler {
 
     @Override
     public void handle(SensorEvent event) {
-        if (alarmDevice.isActivated()) {
+        if (alarmDevice.isActivated() && event.getType() != ALARM_DEACTIVATE) {
             alarmDevice.setToAlarmMode();
         }
 
-        if (alarmDevice.isAlarm()) {
+        if (alarmDevice.isAlarm() && event.getType() != ALARM_DEACTIVATE) {
             System.out.println("Sending sms");
             return;
         }

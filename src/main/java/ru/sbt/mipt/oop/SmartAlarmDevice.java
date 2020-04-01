@@ -9,15 +9,15 @@ class SmartAlarmDevice {
         this.code = code;
     }
 
-    void activate(String code) {
+    public void activate(String code) {
         state.activate(code);
     }
 
-    void deactivate(String code) {
+    public void deactivate(String code) {
         state.deactivate(code);
     }
 
-    void setToAlarmMode() {
+    public void setToAlarmMode() {
         state.setToAlarmMode();
     }
 
@@ -25,15 +25,15 @@ class SmartAlarmDevice {
         this.state = state;
     }
 
-    boolean codeIsEqualTo(String code) {
+    public boolean codeIsEqualTo(String code) {
         return this.code.equals(code);
     }
 
-    boolean isActivated() {
+    public boolean isActivated() {
         return state instanceof AlarmDeviceActivatedState;
     }
 
-    boolean isAlarm() {
+    public boolean isAlarm() {
         return state instanceof AlarmDeviceAlarmState;
     }
 

@@ -38,7 +38,7 @@ public class SmartHome implements Actionable {
         this.alarmDevice = alarmDevice;
     }
 
-    SmartAlarmDevice getAlarmDevice() {
+    public SmartAlarmDevice getAlarmDevice() {
         return alarmDevice;
     }
 }
