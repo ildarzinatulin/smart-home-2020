@@ -1,8 +1,13 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.objects;
+
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.Actionable;
+import ru.sbt.mipt.oop.objects.Door;
+import ru.sbt.mipt.oop.objects.Light;
 
 import java.util.Collection;
 
-public class Room implements Actionable{
+public class Room implements Actionable {
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;

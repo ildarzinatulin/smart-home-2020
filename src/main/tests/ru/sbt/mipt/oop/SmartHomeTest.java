@@ -1,6 +1,10 @@
 package ru.sbt.mipt.oop;
 
 import org.junit.jupiter.api.Test;
+import ru.sbt.mipt.oop.objects.Door;
+import ru.sbt.mipt.oop.objects.Light;
+import ru.sbt.mipt.oop.objects.Room;
+import ru.sbt.mipt.oop.objects.SmartHome;
 
 import java.util.Arrays;
 

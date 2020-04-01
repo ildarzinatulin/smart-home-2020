@@ -1,13 +1,15 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.readers;
 
 import com.google.gson.Gson;
+import ru.sbt.mipt.oop.objects.SmartHome;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-class SmartHomeJsonReader {
+public class SmartHomeJsonReader {
 
-    SmartHome readSmartHome(String path) {
+    public SmartHome readSmartHome(String path) {
         Gson gson = new Gson();
         try {
             String json = new String(Files.readAllBytes(Paths.get(path)));

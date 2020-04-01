@@ -1,9 +1,15 @@
 package ru.sbt.mipt.oop;
 
 import org.junit.jupiter.api.Test;
+import ru.sbt.mipt.oop.eventhandlers.DoorEventHandler;
+import ru.sbt.mipt.oop.objects.Door;
+import ru.sbt.mipt.oop.objects.Light;
+import ru.sbt.mipt.oop.objects.SmartHome;
+import ru.sbt.mipt.oop.readers.SmartHomeJsonReader;
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
 
-import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
-import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
+import static ru.sbt.mipt.oop.sensorevent.SensorEventType.LIGHT_ON;
+import static ru.sbt.mipt.oop.sensorevent.SensorEventType.DOOR_CLOSED;
 
 import java.io.IOException;
 

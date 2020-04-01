@@ -1,4 +1,9 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.eventhandlers;
+
+import ru.sbt.mipt.oop.alarmdevice.SensorAlarmDeviceEvent;
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
+import ru.sbt.mipt.oop.sensorevent.SensorEventType;
+import ru.sbt.mipt.oop.objects.SmartHome;
 
 public class AlarmDeviceHandler implements EventHandler {
 

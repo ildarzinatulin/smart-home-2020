@@ -2,6 +2,11 @@ package ru.sbt.mipt.oop;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import ru.sbt.mipt.oop.alarmdevice.AlarmDeviceActivatedState;
+import ru.sbt.mipt.oop.alarmdevice.AlarmDeviceAlarmState;
+import ru.sbt.mipt.oop.alarmdevice.AlarmDeviceDeactivatedState;
+import ru.sbt.mipt.oop.alarmdevice.SmartAlarmDevice;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SmartAlarmDeviceTest {

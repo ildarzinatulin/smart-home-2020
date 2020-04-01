@@ -1,6 +1,9 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.adapters;
 
 import com.coolcompany.smarthome.events.CCSensorEvent;
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
+import ru.sbt.mipt.oop.sensorevent.SensorEventType;
+import ru.sbt.mipt.oop.eventhandlers.EventHandler;
 
 import java.util.Map;
 
@@ -15,7 +18,7 @@ public class EventHandlerAdapter implements com.coolcompany.smarthome.events.Eve
             "DoorIsClosed", SensorEventType.DOOR_CLOSED
     );*/
 
-    EventHandlerAdapter(EventHandler eventHandler, Map<String, SensorEventType> typeMap) {
+    public EventHandlerAdapter(EventHandler eventHandler, Map<String, SensorEventType> typeMap) {
         this.eventHandler = eventHandler;
         this.typeMap = typeMap;
     }

@@ -1,11 +1,16 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.alarmdevice;
 
-class SmartAlarmDevice {
+import ru.sbt.mipt.oop.alarmdevice.AlarmDevice;
+import ru.sbt.mipt.oop.alarmdevice.AlarmDeviceActivatedState;
+import ru.sbt.mipt.oop.alarmdevice.AlarmDeviceAlarmState;
+import ru.sbt.mipt.oop.alarmdevice.AlarmDeviceDeactivatedState;
+
+public class SmartAlarmDevice {
 
     private AlarmDevice state = new AlarmDeviceDeactivatedState(this);
     private String code;
 
-    SmartAlarmDevice(String code) {
+    public SmartAlarmDevice(String code) {
         this.code = code;
     }
 
@@ -21,7 +26,7 @@ class SmartAlarmDevice {
         state.setToAlarmMode();
     }
 
-    void setState(AlarmDevice state) {
+    public void setState(AlarmDevice state) {
         this.state = state;
     }
 

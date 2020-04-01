@@ -1,10 +1,10 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.alarmdevice;
 
-public class AlarmDeviceDeactivatedState implements AlarmDevice{
+public class AlarmDeviceDeactivatedState implements AlarmDevice {
 
     private SmartAlarmDevice alarmDevice;
 
-    AlarmDeviceDeactivatedState(SmartAlarmDevice alarmDevice) {
+    public AlarmDeviceDeactivatedState(SmartAlarmDevice alarmDevice) {
         this.alarmDevice = alarmDevice;
     }
 

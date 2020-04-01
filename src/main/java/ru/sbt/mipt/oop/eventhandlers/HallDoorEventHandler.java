@@ -1,9 +1,15 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.eventhandlers;
 
-import ru.sbt.mipt.oop.*;
-import ru.sbt.mipt.oop.EventHandler;
+import ru.sbt.mipt.oop.command.CommandSender;
+import ru.sbt.mipt.oop.command.CommandType;
+import ru.sbt.mipt.oop.command.SensorCommand;
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
+import ru.sbt.mipt.oop.objects.Door;
+import ru.sbt.mipt.oop.objects.Light;
+import ru.sbt.mipt.oop.objects.Room;
+import ru.sbt.mipt.oop.objects.SmartHome;
 
-import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
+import static ru.sbt.mipt.oop.sensorevent.SensorEventType.DOOR_CLOSED;
 
 public class HallDoorEventHandler implements EventHandler {
 

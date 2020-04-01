@@ -1,4 +1,7 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.alarmdevice;
+
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
+import ru.sbt.mipt.oop.sensorevent.SensorEventType;
 
 public class SensorAlarmDeviceEvent extends SensorEvent {
 

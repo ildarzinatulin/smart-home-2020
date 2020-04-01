@@ -1,5 +1,9 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.eventhandlers.EventHandler;
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
+import ru.sbt.mipt.oop.sensorevent.SensorEventCreator;
+
 import java.util.List;
 
 class LoopOfHandlesSensorEvents {
