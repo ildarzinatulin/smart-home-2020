@@ -7,7 +7,7 @@ public class DoorEventHandler implements EventHandler {
 
     private SmartHome smartHome;
 
-    DoorEventHandler(SmartHome smartHome) {
+    public DoorEventHandler(SmartHome smartHome) {
         this.smartHome = smartHome;
     }
 
