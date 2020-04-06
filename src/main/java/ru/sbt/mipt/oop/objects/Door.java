@@ -1,4 +1,7 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.objects;
+
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.Actionable;
 
 public class Door implements Actionable {
     private final String id;
@@ -9,15 +12,15 @@ public class Door implements Actionable {
         this.id = id;
     }
 
-    String getId() {
+    public String getId() {
         return id;
     }
 
-    boolean isOpen() {
+    public boolean isOpen() {
         return isOpen;
     }
 
-    void setOpen(boolean open) {
+    public void setOpen(boolean open) {
         isOpen = open;
     }
 

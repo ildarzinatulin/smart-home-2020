@@ -1,12 +1,20 @@
 package ru.sbt.mipt.oop;
 
 import org.junit.jupiter.api.Test;
-import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
+import ru.sbt.mipt.oop.command.CommandSenderOutInConsole;
+import ru.sbt.mipt.oop.eventhandlers.HallDoorEventHandler;
+import ru.sbt.mipt.oop.eventhandlers.LightEventHandler;
+import ru.sbt.mipt.oop.objects.Light;
+import ru.sbt.mipt.oop.objects.SmartHome;
+import ru.sbt.mipt.oop.readers.SmartHomeJsonReader;
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
+
+import static ru.sbt.mipt.oop.sensorevent.SensorEventType.DOOR_CLOSED;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
+import static ru.sbt.mipt.oop.sensorevent.SensorEventType.LIGHT_ON;
 
 class HallDoorEventHandlerTest {
 
@@ -15,7 +23,7 @@ class HallDoorEventHandlerTest {
         SmartHome smartHome = new SmartHomeJsonReader().readSmartHome("smart-home-1.js");
         String objectId = "4"; //door in Hall
         SensorEvent event = new SensorEvent(DOOR_CLOSED, objectId);
-        HallDoorEventHandler handler = new HallDoorEventHandler(smartHome, new CommandSender());
+        HallDoorEventHandler handler = new HallDoorEventHandler(smartHome, new CommandSenderOutInConsole());
         handler.handle(event);
         smartHome.execute(smartHomeObject->{
             if (!(smartHomeObject instanceof Light)) return;
@@ -34,7 +42,7 @@ class HallDoorEventHandlerTest {
 
         String doorInHallId = "4";
         SensorEvent eventClosedDoor = new SensorEvent(DOOR_CLOSED, doorInHallId);
-        HallDoorEventHandler handler = new HallDoorEventHandler(smartHome, new CommandSender());
+        HallDoorEventHandler handler = new HallDoorEventHandler(smartHome, new CommandSenderOutInConsole());
         handler.handle(eventClosedDoor);
 
         smartHome.execute(smartHomeObject->{

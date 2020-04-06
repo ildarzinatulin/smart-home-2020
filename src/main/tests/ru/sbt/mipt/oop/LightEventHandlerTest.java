@@ -1,11 +1,18 @@
 package ru.sbt.mipt.oop;
 
 import org.junit.jupiter.api.Test;
+import ru.sbt.mipt.oop.eventhandlers.DoorEventHandler;
+import ru.sbt.mipt.oop.eventhandlers.LightEventHandler;
+import ru.sbt.mipt.oop.objects.Door;
+import ru.sbt.mipt.oop.objects.Light;
+import ru.sbt.mipt.oop.objects.SmartHome;
+import ru.sbt.mipt.oop.readers.SmartHomeJsonReader;
+import ru.sbt.mipt.oop.sensorevent.SensorEvent;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.sbt.mipt.oop.SensorEventType.*;
+import static ru.sbt.mipt.oop.sensorevent.SensorEventType.*;
 
 
 class LightEventHandlerTest {
